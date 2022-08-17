@@ -21,5 +21,6 @@
 	
 	<a href="./member/search">Search</a>
 	<a href="./bankbook/list">BookList</a>
+	<a href="./bankbook/add">Add</a>
 </body>
 </html>
