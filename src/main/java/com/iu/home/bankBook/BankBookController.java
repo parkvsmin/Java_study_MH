@@ -34,4 +34,30 @@ public class BankBookController {
 		bankBookService.setBook(bankBookDTO);
 		return "redirect:list";
 	}
+	
+	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	public String getDetail(BankBookDTO bankBookDTO, Model model) throws Exception {
+		bankBookDTO = bankBookService.getDetail(bankBookDTO);
+		model.addAttribute("detail", bankBookDTO);
+		
+		return "bankbook/detail";
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete(BankBookDTO bankBookDTO) throws Exception {
+		bankBookService.delete(bankBookDTO);
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String upBook(BankBookDTO bankBookDTO, Model model) throws Exception {
+		model.addAttribute("num", bankBookDTO.getBookNum());
+		return "bankbook/update";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String upBook(BankBookDTO bankBookDTO) throws Exception {
+		bankBookService.upBook(bankBookDTO);
+		return "redirect:list";
+	}
 }
