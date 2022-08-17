@@ -24,4 +24,22 @@ public class BankBookDAO implements BookDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"setBook", bankBookDTO);
 	}
+
+	@Override
+	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getDetail", bankBookDTO);
+	}
+
+	@Override
+	public int delete(BankBookDTO bankBookDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NAMESPACE+"delete", bankBookDTO);
+	}
+
+	@Override
+	public int upBook(BankBookDTO bankBookDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAMESPACE+"upBook", bankBookDTO);
+	}
 }

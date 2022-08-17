@@ -18,4 +18,16 @@ public class BankBookService {
 	int setBook(BankBookDTO bankBookDTO) throws Exception {
 		return bankBookDAO.setBook(bankBookDTO);
 	}
+	
+	BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
+		return bankBookDAO.getDetail(bankBookDTO);
+	}
+	
+	int delete(BankBookDTO bankBookDTO) throws Exception {
+		return bankBookDAO.delete(bankBookDTO);
+	}
+	
+	int upBook(BankBookDTO bankBookDTO) throws Exception {
+		return bankBookDAO.upBook(bankBookDTO);
+	}
 }
