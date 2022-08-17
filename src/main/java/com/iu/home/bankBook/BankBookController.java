@@ -1,5 +1,6 @@
 package com.iu.home.bankBook;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "./bankBook/*")
+@RequestMapping(value = "/bankbook/*")
 public class BankBookController {
 
 	@Autowired
@@ -19,5 +20,18 @@ public class BankBookController {
 	public void getList(Model model) throws Exception {
 		List<BankBookDTO> list = bankBookService.getList();
 		model.addAttribute("list",list);
+	}
+	
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String setBook() throws Exception {
+		return "bankbook/add";
+	}
+	
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String setBook(BankBookDTO bankBookDTO) throws Exception {
+		Calendar ca = Calendar.getInstance();
+		bankBookDTO.setBookNum(ca.getTimeInMillis());
+		bankBookService.setBook(bankBookDTO);
+		return "redirect:list";
 	}
 }

@@ -14,4 +14,8 @@ public class BankBookService {
 	List<BankBookDTO> getList() throws Exception {
 		return bankBookDAO.getList();
 	}
+	
+	int setBook(BankBookDTO bankBookDTO) throws Exception {
+		return bankBookDAO.setBook(bankBookDTO);
+	}
 }

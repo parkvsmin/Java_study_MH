@@ -6,4 +6,8 @@
 	<select id="getList" resultType="com.iu.home.bankBook.BankBookDTO">
 		SELECT * FROM BANKBOOK
 	</select>
+	
+	<insert id="setBook" parameterType="com.iu.home.bankBook.BankBookDTO">
+		INSERT INTO BANKBOOK VALUES (#{bookNum}, #{bookName}, #{bookRate}, 1)
+	</insert>
 </mapper>

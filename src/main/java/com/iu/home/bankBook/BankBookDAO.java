@@ -19,4 +19,9 @@ public class BankBookDAO implements BookDAO{
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
 
+	@Override
+	public int setBook(BankBookDTO bankBookDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"setBook", bankBookDTO);
+	}
 }
