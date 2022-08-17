@@ -8,5 +8,10 @@
 </head>
 <body>
 	<h1>Search Page</h1>
+	
+	        <form action="./search" method="post">
+        <input type="text" name="search">
+        <button type="submit">Search</button>
+        </form>
 </body>
 </html>
