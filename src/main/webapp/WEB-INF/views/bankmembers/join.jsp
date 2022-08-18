@@ -20,6 +20,9 @@
 		<input type="email" name="email">
 		<h3>휴대전화</h3>
 		<input type="number" name="phone">
+		<div>
+			<input type="submit" value="가입하기">
+		</div>
 	</form>
 </body>
 </html>

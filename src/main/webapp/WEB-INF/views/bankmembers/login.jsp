@@ -16,6 +16,9 @@
 		<div>
 			<input type="password" value="pw1" name="password">
 		</div>
+		<div class="login">
+			<input type="submit" value="로그인">
+		</div>
 	</form>
 
 </body>
