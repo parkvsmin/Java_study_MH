@@ -12,7 +12,7 @@ public class BankMembersDAO implements MembersDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	private final String NAMESPACE="com.iu.home.bankMembers.BankMembersDAO";
+	private final String NAMESPACE="com.iu.home.bankMembers.BankMembersDAO.";
 
 	public BankMembersDTO getLogin(BankMembersDTO bankMembersDTO)throws Exception{
 
