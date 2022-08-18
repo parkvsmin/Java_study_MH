@@ -12,15 +12,15 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
-<c:if test="${empty sessionScope.member}">
-	<a href="./member/login">Login</a>
-	<a href="./member/join">Join</a>
+<c:if test="${empty sessionScope.bankmembers}">
+	<a href="./bankmembers/login">Login</a>
+	<a href="./bankmembers/join">Join</a>
 	</c:if>
-	<c:if test="${empty sessionScope.member}">
-	<a href="./member/logout">Logout</a>
+	<c:if test="${empty sessionScope.bankmembers}">
+	<a href="./bankmembers/logout">Logout</a>
 	</c:if>
 	
-	<a href="./member/search">Search</a>
+	<a href="./bankmembers/search">Search</a>
 	<a href="./bankbook/list">BookList</a>
 	<a href="./bankbook/add">Add</a>
 </body>
