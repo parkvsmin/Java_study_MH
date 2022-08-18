@@ -22,7 +22,7 @@ public class BankMembersController {
 	@RequestMapping(value="login",method = RequestMethod.GET)
 	public String login() {
 		System.out.println("로그인");
-		return "./member/login";
+		return "member/login";
 	}
 
 	@RequestMapping(value="login",method = RequestMethod.POST)
