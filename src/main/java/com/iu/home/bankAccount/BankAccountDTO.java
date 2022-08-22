@@ -2,12 +2,21 @@ package com.iu.home.bankAccount;
 
 import java.sql.Date;
 
+import com.iu.home.bankBook.BankBookDTO;
+
 public class BankAccountDTO {
 	private Integer accountNum;
 	private String userName;
 	private Long bookNum;
 	private Date accountDate;
-	
+	private BankBookDTO bankBookDTO;
+
+	public BankBookDTO getBankBookDTO() {
+		return bankBookDTO;
+	}
+	public void setBankBookDTO(BankBookDTO bankBookDTO) {
+		this.bankBookDTO = bankBookDTO;
+	}
 	public Integer getAccountNum() {
 		return accountNum;
 	}

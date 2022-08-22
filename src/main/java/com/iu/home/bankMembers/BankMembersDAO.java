@@ -27,7 +27,22 @@ public class BankMembersDAO implements MembersDAO {
 	@Override
 	public List<BankMembersDTO> getSearchByID(String search) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"search");
+		return sqlSession.selectList(NAMESPACE+"getSearchByID",search);
+	}
+
+	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO)throws Exception{
+
+		return sqlSession.selectOne(NAMESPACE+"getMyPage", bankMembersDTO);
+	}
+
+	@Autowired
+	private BankMembersDAO bankMembersDAO;
+
+	public void getMyPage()throws Exception{
+		BankMembersDTO bankMembersDTO = new BankMembersDTO();
+		bankMembersDTO.setUserName("id1");
+		bankMembersDTO=bankMembersDAO.getMyPage(bankMembersDTO);
+
 	}
 
 

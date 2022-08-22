@@ -7,9 +7,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.home.bankAccount.BankAccountDTO;
+import com.iu.home.bankAccount.BankAccountService;
 import com.iu.home.bankMembers.BankMembersDTO;
 
 @Controller
@@ -18,6 +23,20 @@ public class BankMembersController {
 
 	@Autowired
 	private BankMembersService bankMembersService;
+	//	@Autowired
+	//	private BankAccountService bankAccountService;
+
+	@RequestMapping(value="myPage", method = RequestMethod.GET)
+	public ModelAndView myPage(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("bankmembers");
+		bankMembersDTO=bankMembersService.getMyPage(bankMembersDTO);
+		//List<BankAccountDTO> ar = bankAccountService.getListByUserName(bankMembersDTO);
+		//mv.addObject("list", ar);
+		mv.addObject("dto",bankMembersDTO);
+		mv.setViewName("bankmembers/myPage");
+		return mv;
+	}
 
 	@RequestMapping(value="login",method = RequestMethod.GET)
 	public String login() {
@@ -26,9 +45,9 @@ public class BankMembersController {
 	}
 
 	@RequestMapping(value="login",method = RequestMethod.POST)
-	public String login(BankMembersDTO bankMembersDTO,Model model)throws Exception{
-
+	public String login(HttpSession session,BankMembersDTO bankMembersDTO,Model model)throws Exception{
 		bankMembersDTO = bankMembersService.getLogin(bankMembersDTO);
+		session.setAttribute("bankmembers", bankMembersDTO);
 		return "redirect:../";
 
 	}
@@ -60,7 +79,7 @@ public class BankMembersController {
 
 	@RequestMapping(value="search",method=RequestMethod.POST)
 	public String getSearchByID(String search, Model model)throws Exception {
-		
+
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		List<BankMembersDTO> ar =bankMembersService.getSearchByID(search);
 		model.addAttribute("list",ar);
