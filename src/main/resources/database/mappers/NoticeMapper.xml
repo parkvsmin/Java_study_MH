@@ -5,10 +5,16 @@
     
     <mapper namespace="com.iu.home.board.notice.NoticeDAO">
     <select id="getList"
-    resultType="NoticeDTO">
-    SELECT NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT
-    FROM NOTICE
-    ORDER BY NUM DESC
+    resultType="NoticeDTO" parameterType="java.util.Map">
+ SELECT * FROM
+(SELECT ROWNUM R,N.* FROM 
+(SELECT * FROM NOTICE ORDER BY NUM DESC) N)
+WHERE R BETWEEN #{startRow} AND #{lastRow}
+    </select>
+    
+    <select id="getCount"
+    resultType="java.lang.Long">
+    SELECT COUNT(NUM)FROM NOTICE
     </select>
     
     <select id="getDetail"
@@ -20,7 +26,7 @@
     <insert id="setAdd"
     parameterType="BoardDTO">
    	INSERT INTO NOTICE (NUM,TITLE,WRITER,CONTENTS,REGDATE,HIT)
-   	VALUES(BOARD_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, SYSDATE, 1)    
+   	VALUES(BOARD_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, SYSDATE, 0)    
     
     </insert>
     

@@ -12,7 +12,7 @@
 <c:import url="../template/header.jsp"></c:import>
       	<section class="container-fluid">
 		<div class="row">
-	<h1> List Page</h1>
+	<h1>${board} List Page</h1>
 
 	<table border="1">
 	<thead>

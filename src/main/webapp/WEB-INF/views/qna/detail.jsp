@@ -31,7 +31,7 @@
 			</tr>
 	</table>
 	</section>
-	<a href="update.iu?num=${detail.num}">수정</a>
-	<a href="delete.iu?num=${detail.num}">삭제</a>
+	<a href="update?num=${detail.num}">수정</a>
+	<a href="delete?num=${detail.num}">삭제</a>
 </body>
 </html>

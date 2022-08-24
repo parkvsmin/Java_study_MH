@@ -10,7 +10,7 @@
 <body>
 	<h1> Add Page</h1>
 	
-	<form action="update.iu" method="post">
+	<form action="update" method="post">
 	<div>
 	Writer <input type ="text" name="writer">
 	</div>

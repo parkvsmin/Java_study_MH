@@ -3,6 +3,7 @@ package com.iu.home.notice;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,20 @@ public class NoticeDAOTest extends MyAbstractTest {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
-
+	
 	@Test
+	public void getCountTest()throws Exception {
+		long count = noticeDAO.getCount();
+		assertEquals(203, count);
+	}
+
+//	@Test
 	public void getListTest()throws Exception {
-		List<BoardDTO> ar = noticeDAO.getList();
-		assertNotEquals(0,ar.size());
+//		List<BoardDTO> ar = noticeDAO.getList();
+//		assertNotEquals(0,ar.size());
 		
 	}
-	@Test
+//	@Test
 	public void getDetailTest()throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNum(1L);
@@ -31,32 +38,30 @@ public class NoticeDAOTest extends MyAbstractTest {
 		assertNotEquals(0,ar);
 		
 	}
-	@Test
+//	@Test
 	public void setAddTest()throws Exception {
+		
+		for(int i=0;i<100;i++) {
+			
+		
 		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setTitle("Test");
-		noticeDTO.setWriter("Writer");
-		noticeDTO.setContents("Contents");
-		int ar = noticeDAO.setAdd(noticeDTO);
-		assertNotEquals(0,ar);
+		noticeDTO.setTitle("Test"+i);
+		noticeDTO.setWriter("Writer"+i);
+		noticeDTO.setContents("Contents"+i);
+		
+		int result = noticeDAO.setAdd(noticeDTO);
+		
+		if(i%10==0) {
+			Thread.sleep(500);
+		}
+		
+		}
+		
+		System.out.println("Finish!!!");
 		
 	}
-	@Test
-	public void setUpdateTest()throws Exception {
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setNum(1L);
-		int ar = noticeDAO.setUpdate(noticeDTO);
-		assertNotEquals(0,ar);
-	}
-	@Test
-	public void setDeleteTest()throws Exception {
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setTitle("Test");
-		noticeDTO.setWriter("Writer");
-		noticeDTO.setContents("Contents");
-		int ar = noticeDAO.setDelete(noticeDTO);
-		assertNotEquals(0,ar);
-	}
+	
+	
 	
 
 }

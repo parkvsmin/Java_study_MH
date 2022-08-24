@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> Detail Page</h1>
+	<h1>${board} Detail Page</h1>
 	
 	<section class="container-fluid">
 		<table border="1">

@@ -10,7 +10,7 @@
 <body>
 	<h1>Update Page</h1>
 	
-		<form action="update.iu" method="post">
+		<form action="update" method="post">
 		Title <input type="text" name="title">
 		Contents <input type="text" name="contents">
 		Num <input type="hidden" name="num" value="${num}">

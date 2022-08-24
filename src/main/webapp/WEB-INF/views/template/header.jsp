@@ -13,7 +13,8 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                     <a class="nav-link" href="/bankbook/list">상품리스트</a>
-                    <a class="nav-link" href="/board/list">공지사항</a>
+                    <a class="nav-link" href="/notice/list">공지사항</a>
+                    <a class="nav-link" href="/qna/list">qna</a>
                     <a class="nav-link" href="/bankmembers/search">회원검색</a>
                     
                     <c:choose>
