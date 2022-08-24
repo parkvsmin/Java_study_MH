@@ -5,7 +5,7 @@
     
     <mapper namespace="com.iu.home.board.notice.NoticeDAO">
     <select id="getList"
-    resultType="NoticeDTO" parameterType="java.util.Map">
+    resultType="NoticeDTO" parameterType="com.iu.home.util.Pager">
  SELECT * FROM
 (SELECT ROWNUM R,N.* FROM 
 (SELECT * FROM NOTICE ORDER BY NUM DESC) N)

@@ -36,6 +36,18 @@
 		</c:forEach>
 	</tbody>
 	</table>
+	<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+	<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+		<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+	</c:forEach>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+	<div class="mb-3">
+		<a href="./add" class="btn btn-primary">글쓰기</a>
+	</div>
 	</div>
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
