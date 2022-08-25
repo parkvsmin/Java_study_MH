@@ -22,9 +22,9 @@ public class NoticeDAO implements BoardDAO {
 
 	
 	@Override
-	public Long getCount() throws Exception {
+	public Long getCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"getCount");
+		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
 	
 	@Override

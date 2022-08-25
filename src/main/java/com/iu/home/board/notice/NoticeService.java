@@ -20,7 +20,7 @@ public class NoticeService implements BoardService {
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		
-		Long totalCount = noticeDAO.getCount();
+		Long totalCount = noticeDAO.getCount(pager);
 		pager.getNum(totalCount);
 		pager.getRowNum();
 		// TODO Auto-generated method stub
@@ -79,8 +79,6 @@ public class NoticeService implements BoardService {
 //
 //		Long startNum= (curBlock-1)*perBlock+1; //5.curBlock 시작번호 끝번호
 //		Long lastNum = curBlock*perBlock;
-
-
 
 		return noticeDAO.getList(pager);
 

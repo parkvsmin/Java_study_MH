@@ -17,6 +17,31 @@
 	<section class="container-fluid">
 		<div class="row">
 			<h1>${board}ListPage</h1>
+			<div class="row mb-3">
+				<form action="./list" class="row row-cols-lg-auto g-3 align-items-center">
+
+					<div class="col-12">
+						<label class="visually-hidden" for="Kind">Kind</label> <select
+							name="kind" class="form-select" id="Kind">
+							<option value="contents">Contents</option>
+							<option value="title">Title</option>
+							<option value="writer">Writer</option>
+						</select>
+					</div>
+
+					<div class="col-12">
+						<label class="visually-hidden" for="search">Search</label>
+						<div class="input-group">
+							<input type="text" name="search" class="form-control" id="search"
+								placeholder="Search">
+						</div>
+					</div>
+					<div class="col-12">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+
+			</div>
 
 			<table border="1">
 				<thead>
@@ -31,6 +56,9 @@
 				<tbody>
 					<c:forEach items="${list}" var="dto">
 						<tr>
+						<c:catch>
+						<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
+						</c:catch>
 							<td><a href="./detail?num=${dto.num}">${dto.title}</a></td>
 							<td>${dto.title}</td>
 							<td>${dto.writer}</td>
@@ -44,14 +72,14 @@
 				<ul class="pagination">
 					<c:if test="${pager.pre}">
 						<li class="page-item"><a class="page-link"
-							href="./list?page=${pager.startNum-1}">Previous</a></li>
+							href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
 					</c:if>
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 						<li class="page-item"><a class="page-link"
-							href="./list?page=${i}">${i}</a></li>
+							href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 					</c:forEach>
-					
-<%-- 					<c:choose>
+
+					<%-- 					<c:choose>
 						<c:when test="${pager.next}">
 							<li class="page-item">
 						</c:when>
@@ -59,9 +87,9 @@
 							<li class="page-item disabled">
 						</otherwise>
 					</c:choose> --%>
-					
-					<li class="page-item ${pager.next?'':'disabled'}"><a class="page-link"
-						href="./list?page=${pager.lastNum+1}">Next</a></li>
+
+					<li class="page-item ${pager.next?'':'disabled'}"><a
+						class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
 				</ul>
 			</nav>
 			<div class="mb-3">
