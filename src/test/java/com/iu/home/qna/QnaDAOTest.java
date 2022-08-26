@@ -17,10 +17,10 @@ public class QnaDAOTest extends MyAbstractTest {
 	@Autowired
 	private QnaDAO qnaDAO;
 
-	@Test
+//	@Test
 	public void getListTest()throws Exception {
-		List<BoardDTO>ar = qnaDAO.getList();
-		assertNotEquals(0,ar.size());
+//		List<BoardDTO>ar = qnaDAO.getList();
+//		assertNotEquals(0,ar.size());
 	}
 	
 	@Test
