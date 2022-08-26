@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.home.bankAccount.BankAccountDTO;
@@ -65,9 +66,13 @@ public class BankMembersController {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO) throws Exception {
-
-		int result = bankMembersService.setJoin(bankMembersDTO);
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
+		System.out.println(photo);
+		
+		System.out.println("upload 파일명 : "+photo.getOriginalFilename());
+		System.out.println("upload 파라미터명 : "+photo.getName());
+		System.out.println("upload 파일크기 : "+photo.getSize());
+		int result = bankMembersService.setJoin(bankMembersDTO, photo);
 
 		return "redirect:./login";
 	}

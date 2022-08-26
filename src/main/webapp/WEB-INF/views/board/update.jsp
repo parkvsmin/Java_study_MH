@@ -13,17 +13,31 @@
 	
 		<c:import url="../template/header.jsp"></c:import>
 	
-	<section class="container-fluid">
-		<div class="row">
+<section class="container-fluid col-lg-4">
 	
-		<form action="update" method="post">
-		Title <input type="text" name="title">
-		Contents <input type="text" name="contents">
-		Num <input type="hidden" name="num" value="${num}">
-		<button type="submit">업데이트</button>
-	</form>
+	<div class="row">
+		<form action="./add" method="post">
+			<input type="hidden" name="num" value="${boardDTO.num}" >
+			<div class="mb-3">
+			  <label for="title" class="form-label">Title</label>
+			  <input type="text" name="title" value="${boardDTO.title}" class="form-control" id="title" placeholder="제목 입력">
+			</div>
+			<div class="mb-3">
+			  <label for="writer" class="form-label">Writer</label>
+			  <input type="text" name="writer" value="${boardDTO.writer}" disabled="disabled" class="form-control" id="Writer" placeholder="작성자 입력">
+			</div>
+			<div class="mb-3">
+			  <label for="contents" class="form-label">Contents</label>
+			  <textarea class="form-control" name="contents" id="contents" rows="3">${boardDTO.contents}</textarea>
+			</div>
+			
+			<div class="mb-3">
+				<button class="btn btn-success">제출</button>
+			</div>
+			
+		</form>
 	</div>
-		</section>
+</section>
 	<c:import url="../template/footer.jsp"></c:import>
 	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

@@ -28,16 +28,27 @@
 		parameterType="com.iu.home.bankMembers.BankMembersDTO"
 		resultMap="getMyPageResult">
 		<!-- resultType="com.iu.home.bankMembers.BankMembersDTO" -->
-		SELECT USERNAME, NAME, EMAIL, PHONE, ACCOUNTNUM, BOOKNAME,ACCOUNTDATE
-		FROM BANKMEMBERS BM
-		INNER JOIN
-		BANKACCOUNT BA
-		USING (USERNAME)
-		INNER JOIN
-		BANKBOOK BB
-		USING (BOOKNUM)
-		WHERE USERNAME=#{userName}
+SELECT BM.USERNAME, NAME, EMAIL, PHONE, FILENUM, FILENAME, ACCOUNTNUM, BOOKNAME,ACCOUNTDATE
+    FROM BANKMEMBERS BM
+		
+    LEFT JOIN
+    MEMBERFILE MF
+    ON BM.USERNAME = MF.USERNAME
+		
+    LEFT JOIN
+    BANKACCOUNT BA
+    ON BM.USERNAME = BA.USERNAME
+		
+    LEFT JOIN
+    BANKBOOK BB
+    ON BA.BOOKNUM = BB.BOOKNUM
+    WHERE BM.USERNAME=#{userName}
 	</select>
+	
+	<insert id="setAddFile" parameterType="BankMembersFileDTO">
+		INSERT INTO MEMBERFILE (FILENUM,ORINAME,USERNAME,FILENAME)
+		VALUES(FILE_SEQ.NEXTVAL,#{oriName},#{userName},#{fileName})
+	</insert>
 
 	<resultMap type="com.iu.home.bankMembers.BankMembersDTO"
 		id="getMyPageResult">
@@ -45,15 +56,24 @@
 		<result column="NAME" property="name" />
 		<result column="EMAIL" property="email" />
 		<result column="PHONE" property="phone" />
+		
+		<association property="bankMembersFileDTO"
+		javaType="BankMembersFileDTO">
+		<id column="FILENUM" property="fileNum"/>
+		<result column="FILENAME" property="fileName"/>
+		</association>
+		
 		<collection property="bankAccountDTOs"
 			javaType="java.util.List"
 			ofType="com.iu.home.bankAccount.BankAccountDTO">
 			<id column="ACCOUNTNUM" property="accountNum" />
 			<result column="ACCOUNTDATE" property="accountDate" />
+
 			<association property="bankBookDTO"
 				javaType="com.iu.home.bankBook.BankBookDTO">
 				<result column="BOOKNAME" property="bookName" />
 			</association>
+		
 		</collection>
 
 	</resultMap>
