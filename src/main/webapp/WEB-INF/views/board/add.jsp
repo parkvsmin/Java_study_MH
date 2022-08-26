@@ -18,7 +18,7 @@
 <c:import url="../template/header.jsp"></c:import>
 	<h1>${board} Add Page</h1>
 	
-	<form action="add" method="post">
+	<form action="add" method="post" enctype="multipart/form-data">
 	
 		<div class="mb-3">
 			<label for="exampleFormControlInput1" class="form-label">Title</label>
@@ -32,6 +32,18 @@
 			<label for="inputPassword" class="form-label">Contents</label>
 			<input type="text" class="form-control" name="contents"></input>
 			<textarea class="form-control" name="contents" id="contents" rows="3"></textarea>
+		</div>
+<div class="mb-3">
+			<label for="files" class="form-label">File</label>
+			<input type="file" class="form-control" name="files" id="files" placeholder="파일 입력"></input>
+		</div>
+		<div class="mb-3">
+			<label for="files" class="form-label">File</label>
+			<input type="file" class="form-control" name="files" id="files" placeholder="파일 입력"></input>
+		</div>
+		<div class="mb-3">
+			<label for="files" class="form-label">File</label>
+			<input type="file" class="form-control" name="files" id="files" placeholder="파일 입력"></input>
 		</div>
 		<input type="submit">
 		</form>

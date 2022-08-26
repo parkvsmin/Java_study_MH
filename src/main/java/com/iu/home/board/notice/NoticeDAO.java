@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iu.home.bankMembers.BankMembersFileDTO;
 import com.iu.home.board.impl.BoardDAO;
 import com.iu.home.board.impl.BoardDTO;
 import com.iu.home.util.Pager;
@@ -20,6 +21,9 @@ public class NoticeDAO implements BoardDAO {
 	
 	private final String NAMESPACE="com.iu.home.board.notice.NoticeDAO.";
 
+	public int setAddFile(BankMembersFileDTO bankMembersFileDTO)throws Exception {
+		return sqlSession.insert(NAMESPACE+"setAddFile", bankMembersFileDTO);
+	}
 	
 	@Override
 	public Long getCount(Pager pager) throws Exception {
