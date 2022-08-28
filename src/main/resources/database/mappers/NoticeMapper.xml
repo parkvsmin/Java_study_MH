@@ -48,6 +48,13 @@
 		0)
 
 	</insert>
+	
+ 		<insert id="setAddFile" parameterType="BoardFileDTO">
+		INSERT INTO NOTICEFILE (FILENUM,ORINAME,N_NUM,FILENAME)
+		VALUES(FILE_SEQ.NEXTVAL,#{oriName},#{n_num},#{fileName})
+	</insert>
+	
+	
 
 	<insert id="setUpdate" parameterType="BoardDTO">
 		UPDATE NOTICE SET

@@ -24,7 +24,7 @@
 			<tr>
 				<td>${detail.num}</td>
 				<td>${detail.title}</td>
-				<td>${detail.content}</td>
+				<td>${detail.contents}</td>
 				<td>${detail.writer}</td>
 				<td>${detail.regDate}</td>
 				<td>${detail.hit}</td>

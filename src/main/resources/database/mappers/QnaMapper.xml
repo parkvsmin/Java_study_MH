@@ -65,6 +65,11 @@ SELECT * FROM
 		VALUES(#{num}, #{title}, #{writer}, #{contents}, SYSDATE,
 		0, #{num}, 0, 0)
 	</insert>
+	
+ 		<insert id="setAddFile" parameterType="BoardFileDTO">
+		INSERT INTO QNAFILE (FILENUM,ORINAME,Q_NUM,FILENAME)
+		VALUES(FILE_SEQ.NEXTVAL,#{oriName},#{q_num},#{fileName})
+	</insert>
 
 	<insert id="setUpdate" parameterType="BoardDTO">
 		UPDATE QNA SET

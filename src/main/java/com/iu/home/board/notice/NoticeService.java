@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iu.home.bankMembers.BankMembersDAO;
 import com.iu.home.board.impl.BoardDAO;
 import com.iu.home.board.impl.BoardDTO;
+import com.iu.home.board.impl.BoardFileDTO;
 import com.iu.home.board.impl.BoardService;
 import com.iu.home.util.Pager;
 
@@ -100,6 +102,7 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[]files) throws Exception {
+		int result = noticeDAO.setAdd(boardDTO);
 		//파일저장위치 : resources/upload/notice
 		//폴더 실제경로(OS기준)
 		String realPath = servletContext.getRealPath("resources/upload/notice");
@@ -114,10 +117,25 @@ public class NoticeService implements BoardService {
 			if(mf.isEmpty()) {
 				continue;
 			}
+			String fileName=UUID.randomUUID().toString();
+			System.out.println(fileName);
+			
+			fileName = fileName+"-"+mf.getOriginalFilename();
+			System.out.println(fileName);
+			file = new File(file, fileName);
+		//1) MultipartFile 클래스의 transferTo 메서드 사용
+			mf.transferTo(file);
+			
 			//저장하는 코드
+		BoardFileDTO boardFileDTO = new BoardFileDTO();
+		boardFileDTO.setFileName(fileName);
+		boardFileDTO.setOriName(mf.getOriginalFilename());
+		boardFileDTO.setNum(boardDTO.getNum());
+		noticeDAO.setAddFile(boardFileDTO);
+		
 		}
 		// TODO Auto-generated method stub
-		return 0;//noticeDAO.setAdd(boardDTO);
+		return result;//noticeDAO.setAdd(boardDTO);
 	}
 
 	@Override
