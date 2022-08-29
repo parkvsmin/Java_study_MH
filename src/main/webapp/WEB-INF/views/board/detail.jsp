@@ -19,6 +19,9 @@
 	<div class="row">
 		<a href="./reply?num=${boardDTO.num}" class="btn btn-danger">Reply</a>
 	</div>
+	<c:forEach items="${boardDTO.boardFileDTOs}" var="fileDTO">
+		<a href="../resources/${board}/${fileDTO.fileName}">${fileDTO.oriName}</a>
+	</c:forEach>
 	
 	<section class="container-fluid">
 		<table border="1">

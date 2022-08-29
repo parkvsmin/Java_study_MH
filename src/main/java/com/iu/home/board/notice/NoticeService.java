@@ -17,6 +17,7 @@ import com.iu.home.board.impl.BoardDAO;
 import com.iu.home.board.impl.BoardDTO;
 import com.iu.home.board.impl.BoardFileDTO;
 import com.iu.home.board.impl.BoardService;
+import com.iu.home.util.FileManager;
 import com.iu.home.util.Pager;
 
 @Service
@@ -24,8 +25,9 @@ public class NoticeService implements BoardService {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
+
 	@Autowired
-	private ServletContext servletContext;
+	private FileManager fileManager;
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -101,40 +103,24 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile[]files) throws Exception {
+	public int setAdd(BoardDTO boardDTO, MultipartFile[]files, ServletContext servletContext) throws Exception {
 		int result = noticeDAO.setAdd(boardDTO);
-		//파일저장위치 : resources/upload/notice
-		//폴더 실제경로(OS기준)
-		String realPath = servletContext.getRealPath("resources/upload/notice");
-				System.out.println(realPath);
-		//폴더확인
-				File file = new File(realPath);
-		if(! file.exists()) {
-			file.mkdirs();
-		}
-		//중복되지 않는 파일명 생성
-		for(MultipartFile mf:files) {
-			if(mf.isEmpty()) {
+		String path="resources/upload.notice";
+		
+		for(MultipartFile multipartFile: files) {
+			if(multipartFile.isEmpty()) {
 				continue;
 			}
-			String fileName=UUID.randomUUID().toString();
-			System.out.println(fileName);
-			
-			fileName = fileName+"-"+mf.getOriginalFilename();
-			System.out.println(fileName);
-			file = new File(file, fileName);
-		//1) MultipartFile 클래스의 transferTo 메서드 사용
-			mf.transferTo(file);
-			
-			//저장하는 코드
-		BoardFileDTO boardFileDTO = new BoardFileDTO();
-		boardFileDTO.setFileName(fileName);
-		boardFileDTO.setOriName(mf.getOriginalFilename());
-		boardFileDTO.setNum(boardDTO.getNum());
-		noticeDAO.setAddFile(boardFileDTO);
-		
+			String fileName=fileManager.saveFile(servletContext, path, multipartFile);
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
 		}
-		// TODO Auto-generated method stub
+		
+		
+		
+		
 		return result;//noticeDAO.setAdd(boardDTO);
 	}
 

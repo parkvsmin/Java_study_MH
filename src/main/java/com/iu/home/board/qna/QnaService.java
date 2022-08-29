@@ -61,7 +61,7 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO,MultipartFile[]files) throws Exception {
+	public int setAdd(BoardDTO boardDTO,MultipartFile[]files, ServletContext servletContext) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("Insert 전 : "+boardDTO.getNum());
 		int result = qnaDAO.setAdd(boardDTO);
@@ -80,7 +80,7 @@ public class QnaService implements BoardService {
 			}
 		//UUID 클래스 
 		String fileName=UUID.randomUUID().toString();
-		fileName = fileName+"-"+mf.getOriginalFilename();
+		fileName = fileName+"_"+mf.getOriginalFilename();
 		// HDD저장
 		file = new File(file, fileName);
 		mf.transferTo(file);
