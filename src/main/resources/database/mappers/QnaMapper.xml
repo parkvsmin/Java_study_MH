@@ -67,8 +67,8 @@ SELECT * FROM
 	</insert>
 	
  		<insert id="setAddFile" parameterType="BoardFileDTO">
-		INSERT INTO QNAFILE (FILENUM,ORINAME,Q_NUM,FILENAME)
-		VALUES(FILE_SEQ.NEXTVAL,#{oriName},#{q_num},#{fileName})
+		INSERT INTO QNAFILE (FILENUM,ORINAME,NUM,FILENAME)
+		VALUES(FILE_SEQ.NEXTVAL,#{oriName},#{num},#{fileName})
 	</insert>
 
 	<insert id="setUpdate" parameterType="BoardDTO">

@@ -66,7 +66,7 @@ public class QnaService implements BoardService {
 		System.out.println("Insert 전 : "+boardDTO.getNum());
 		int result = qnaDAO.setAdd(boardDTO);
 		System.out.println("Insert 후 : "+boardDTO.getNum());
-		String realPath = servletContext.getRealPath("/resources/upload.qna");
+		String realPath = servletContext.getRealPath("/resources/upload/qna");
 		//폴더정보자바객체를선언
 		File file = new File(realPath);
 		//폴더생성

@@ -41,7 +41,7 @@
 		FROM NOTICE N
 		LEFT JOIN 
 		NOTICEFILE NF
-		ON N.NUM=NF.N_NUM
+		ON N.NUM=NF.NUM
 		WHERE N.NUM = #{num}
 	</select>
 	
@@ -72,8 +72,8 @@
 	</insert>
 	
  		<insert id="setAddFile" parameterType="BoardFileDTO">
-		INSERT INTO NOTICEFILE (FILENUM,ORINAME,N_NUM,FILENAME)
-		VALUES(FILE_SEQ.NEXTVAL,#{oriName},#{n_num},#{fileName})
+		INSERT INTO NOTICEFILE (FILENUM,ORINAME,NUM,FILENAME)
+		VALUES(FILE_SEQ.NEXTVAL,#{oriName},#{num},#{fileName})
 	</insert>
 	
 	
