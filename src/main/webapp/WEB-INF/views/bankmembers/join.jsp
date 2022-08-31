@@ -36,16 +36,16 @@
 					<div class="row mb-3">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
 						<div class="col-sm-10">
-							<input type="password" name="password" class="form-control"
-								id="password" placeholder="Password 입력">
+							<input type="password" name="passWord" class="form-control"
+								id="passWord" placeholder="Password 입력">
 								<div id="passwordResult"></div>
 						</div>
 					</div>
 					<div class="row mb-3">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
 						<div class="col-sm-10">
-							<input type="password" name="password" class="form-control"
-								id="pw" placeholder="Password 입력">
+							<input type="password" name="passwordCheck" class="form-control"
+								id="passwordCheck" placeholder="Password 입력">
 								<div id="pwResult"></div>
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 						<div class="col-sm-10">
 							<input type="text" name="name" class="form-control"
 								id="name" placeholder="이름 입력">
-								<div></div>
+								<div id="nameResult"></div>
 						</div>
 					</div>
 
@@ -63,7 +63,7 @@
 						<div class="col-sm-10">
 							<input type="email" required name="email" class="form-control"
 								id="email" placeholder="Email 입력">
-								<div></div>
+								<div id="emailResult"></div>
 						</div>
 					</div>
 
@@ -72,7 +72,7 @@
 						<div class="col-sm-10">
 							<input type="text" name="phone" class="form-control"
 								id="phone" placeholder="전화번호 입력">
-								<div></div>
+								<div id="phoneResult"></div>
 						</div>
 					</div>
 
@@ -86,7 +86,7 @@
 			</div>
 			<div class="row justify-content-end">
 				<div>
-					<button type="submit" id="joinButton" class="btn btn-primary mb-3">Sign in</button>
+					<button type="button" id="joinButton" class="btn btn-primary mb-3">Sign in</button>
 				</div>
 
 			</div>
@@ -99,7 +99,7 @@
 		crossorigin="anonymous"></script>
 		<script src="/resources/js/member.js"></script>
 		<script>
-		//	joinCheck();
+			joinCheck();
 		</script>
 
 </body>

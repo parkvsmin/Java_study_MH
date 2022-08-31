@@ -1,4 +1,4 @@
-function check() {
+function loginCheck() {
 
 const btn=document.getElementById("btn");
 const frm=document.getElementById("frm");
@@ -110,19 +110,24 @@ joinButton.addEventListener("click", function(){
 const userName = document.getElementsById("userName");
 const userNameResult = document.getElementById("userNameResult");
 
-const password = document.getElementsById("password");
+const passWord = document.getElementsById("passWord");
 const passwordResult = document.getElementById("passwordResult");
 
-const pw = document.getElementById("pw");
+const passwordCheck = document.getElementById("passwordCheck");
 const pwResult = document.getElementById("pwResult");
 
 const name = document.getElementsById("name");
+const nameResult = document.getElementById("nameResult");
+
 const email = document.getElementsById("email");
+const emailResult = document.getElementById("emailResult");
+
 const phone = document.getElementsById("phone");
+const phoneResult = document.getElementById("phoneResult");
 
 userName.addEventListener("blur", function(){
 
-    if(userName.value.length>1){
+    if(userName.value.length>1) {
         userNameResult.innerHTML="";
         idCheck=true;
     }else {
@@ -130,16 +135,12 @@ userName.addEventListener("blur", function(){
         userNameResult.innerHTML="최소 2글자 이상 입력";
     }
 
-    // let u = userName.value
-    // if(u == '' || u.length<3) {
-    //     alert("id는 2글자 이상 입력");
-    //     userName.focus();
-    // }
+
 });
 
 
-password.addEventListener("change", function(){
-    if(password.value.length>5) {
+passWord.addEventListener("change", function(){
+    if(passWord.value.length>5) {
         pwCheck=true;
         passwordResult.innerHTML="";
         pwResult.value="";
@@ -147,67 +148,60 @@ password.addEventListener("change", function(){
         pwCheck=false;
         passwordResult.innerHTML="최소 6글자 이상";
     }
-    // let p = password.value
-    // if(p.length>=6) {
-    //     alert("최소 6글자 이상");
-    //     password.focus();
-    // }
+
 
 });
-//pw 같은지 
-pw.addEventListener("blur", function(){
-    if(password.value == pw.value){
+//pw 같은지 확인
+passwordCheck.addEventListener("blur", function(){
+    if(passWord.value == passwordCheck.value) {
         pwEqualCheck=true;
-        pwResult.innerHTML="";
+        pwResult.innerHTML="일치";
 
     }else {
         pwEqualCheck=false;
-        pw.value="";
+        passwordCheck.value="";
         pwResult.innerHTML="불일치";
     }
-    // let pw = pw.value
-    // if(pw.length>=6) {
-    //     alert("최소 6글자 이상");
-    // }else (p.value != pw.value); {
-    //     alert("pw불일치");
-    //     password.focus();
-    //     pw.focus();
-    //     return false;
-    // }
+
 
 });
 
 name.addEventListener("blur", function(){
-    let n = name.value
-    if(n.length>=1) {
+    if(name.value.length>1) {
+        nameCheck=true;
+        nameResult.innerHTML="";
+
     }else {
-        n = name.value;
-        name.focus();
+        nameResult.innerHTML="2글자 이상";
+        nameCheck=false;
     }
 
 });
 
 email.addEventListener("blur", function(){
-    let e = email.value
-    if(e.length>=1) {
+    if(email.value.length>1) {
+        emailCheck=true;
+        emailResult.innerHTML="";
     }else {
-        e = email.value;
-        email.focus();
+        emailResult.innerHTML="2글자 이상";
+        emailCheck=false;
     }
-
+ 
 });
 
 phone.addEventListener("blur", function(){
-    let p = phone.value
-    if(p.length>=1) {
+    if(phone.value.length>1) {
+        phoneCheck=true;
+        phoneResult.innerHTML="";
     }else {
-        p = phone.value;
-        phone.focus();
+        phoneResult.innerHTML="2글자 이상";
+        phoneCheck=false;
     }
+
 });
 
 
-}
+} //joinCheck 끝
 
     
 
