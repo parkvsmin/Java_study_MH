@@ -7,25 +7,33 @@ for(let i=0;i<ch.length;i++) {
         alert(ch[i].value);
     });
 }
-
+//-----
 all.addEventListener("click", function(){
-    if(cb[i].value==all) {
-
+    console.log(all.checked);
+    for(let i=0;i<cb.length;i++) {
+    cb[i].checked=all.checked;
     }
-});
-
+})
+//-----
 for(let i=0;i<cb.length;i++) {
-    if(cb[i].value==all) {
-        cb[i].selected=true;
-    };
-    cb[i].addEventListener("click", function(){
-
-    });
+    // cb[i].addEventListener("click", function(){
+    //     check(1)
+    // });
+    cb[i].addEventListener("click", check);
+  
 }
 
-if(cb.length == checked.length) {
-    all.checked = true;
-} else {
-    all.checked = false;
+function check() {
+    let result = true;
+    for(let i=0;i<cb.length;i++) {
+        if(!cb[i].checked){
+            result=false;
+            break;
+        }
+    }
+    all.checked=result;
 }
+
+
+
 
