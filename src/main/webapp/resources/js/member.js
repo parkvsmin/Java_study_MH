@@ -1,3 +1,5 @@
+function check() {
+
 const btn=document.getElementById("btn");
 const frm=document.getElementById("frm");
 const userName=document.getElementById("userName");
@@ -26,6 +28,58 @@ btn.addEventListener("click", function(){
     //     alert("id와pw는 필수입니다");
     // }
 });
+
+}
+
+function check(){
+
+const all = document.getElementById("all");
+const cb = document.getElementsByClassName("cb");
+const join = document.getElementById("join");
+const frm=document.getElementById("frm");
+const req=document.getElementsByClassName("req");
+
+
+join.addEventListener("click", function(){
+    let result=true;
+    for(let i=0;i<req.length;i++){
+        if(!req[i].checked){
+            result=false;
+            break;
+        }
+    }
+    if(result){
+        frm.submit();
+    }else {
+        alert("필수 동의");
+    }
+    // if(all.checked){
+    //     frm.submit();
+    // }else {
+    //     alert("약관에 동의 해야 합니다")
+    // }
+});
+
+all.addEventListener("click", function(){
+    for(i=0;i<cb.length;i++){
+        cb[i].check=all.checked;
+    }
+})
+ 
+    for(i=0;i<cb.length;i++) {
+        cb[i].addEventListener("click" , function(){
+            let result=true;
+            for(let j=0;j<cb.length;j++){
+                if(!cb[j].checked) {
+                    result=false;
+                    break;
+                }
+            }
+            all.checked=result;
+        })
+    }
+}
+
     
 
 

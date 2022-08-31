@@ -24,7 +24,8 @@
                     </c:when>
                    	<c:otherwise>
                     <a class="nav-link" href="/bankmembers/login">로그인</a>
-                    <a class="nav-link" href="/bankmembers/join">회원가입</a>
+                    <a class="nav-link" href="/bankmembers/agree">회원가입</a>
+                    
                     </c:otherwise>
                     </c:choose>
                 </div>

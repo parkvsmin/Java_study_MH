@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -65,6 +66,8 @@ public class BankMembersController {
 
 		return "bankmembers/join";
 	}
+	
+	
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, HttpSession session) throws Exception {
@@ -76,6 +79,12 @@ public class BankMembersController {
 		int result = bankMembersService.setJoin(bankMembersDTO, photo, session.getServletContext());
 
 		return "redirect:./login";
+	}
+	
+	@GetMapping("agree")
+	public String getAgree()throws Exception {
+
+		return "bankmembers/agree";
 	}
 
 	@RequestMapping(value="search",method=RequestMethod.GET)
