@@ -55,7 +55,7 @@
 		crossorigin="anonymous"></script>
         <script src="/resources/js/member.js"></script>
         <script>
-            check();
+         check();
         </script>
 </body>
 </html>

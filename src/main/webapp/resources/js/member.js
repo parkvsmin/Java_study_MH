@@ -80,6 +80,135 @@ all.addEventListener("click", function(){
     }
 }
 
+
+function joinCheck(){
+
+//선택자
+const joinForm = document.getElementsById("joinForm");
+const joinButton = document.getElementsById("joinButton");
+
+//Check 결과
+let idCheck=false;
+let pwCheck=false;
+let pwEqualCheck=false;
+let nameCheck=false;
+let emailCheck=false;
+let phoneCheck=false;
+
+
+//joinButton click
+joinButton.addEventListener("click", function(){
+    if(idCheck&&pwCheck&&pwEqualCheck&&nameCheck&&emailCheck&&phoneCheck) {
+        joinForm.submit();
+    }else {
+        alert("필수 입력 사항 입력");
+    }
+
+})
+
+
+const userName = document.getElementsById("userName");
+const userNameResult = document.getElementById("userNameResult");
+
+const password = document.getElementsById("password");
+const passwordResult = document.getElementById("passwordResult");
+
+const pw = document.getElementById("pw");
+const pwResult = document.getElementById("pwResult");
+
+const name = document.getElementsById("name");
+const email = document.getElementsById("email");
+const phone = document.getElementsById("phone");
+
+userName.addEventListener("blur", function(){
+
+    if(userName.value.length>1){
+        userNameResult.innerHTML="";
+        idCheck=true;
+    }else {
+        idCheck=false;
+        userNameResult.innerHTML="최소 2글자 이상 입력";
+    }
+
+    // let u = userName.value
+    // if(u == '' || u.length<3) {
+    //     alert("id는 2글자 이상 입력");
+    //     userName.focus();
+    // }
+});
+
+
+password.addEventListener("change", function(){
+    if(password.value.length>5) {
+        pwCheck=true;
+        passwordResult.innerHTML="";
+        pwResult.value="";
+    }else {
+        pwCheck=false;
+        passwordResult.innerHTML="최소 6글자 이상";
+    }
+    // let p = password.value
+    // if(p.length>=6) {
+    //     alert("최소 6글자 이상");
+    //     password.focus();
+    // }
+
+});
+//pw 같은지 
+pw.addEventListener("blur", function(){
+    if(password.value == pw.value){
+        pwEqualCheck=true;
+        pwResult.innerHTML="";
+
+    }else {
+        pwEqualCheck=false;
+        pw.value="";
+        pwResult.innerHTML="불일치";
+    }
+    // let pw = pw.value
+    // if(pw.length>=6) {
+    //     alert("최소 6글자 이상");
+    // }else (p.value != pw.value); {
+    //     alert("pw불일치");
+    //     password.focus();
+    //     pw.focus();
+    //     return false;
+    // }
+
+});
+
+name.addEventListener("blur", function(){
+    let n = name.value
+    if(n.length>=1) {
+    }else {
+        n = name.value;
+        name.focus();
+    }
+
+});
+
+email.addEventListener("blur", function(){
+    let e = email.value
+    if(e.length>=1) {
+    }else {
+        e = email.value;
+        email.focus();
+    }
+
+});
+
+phone.addEventListener("blur", function(){
+    let p = phone.value
+    if(p.length>=1) {
+    }else {
+        p = phone.value;
+        phone.focus();
+    }
+});
+
+
+}
+
     
 
 
