@@ -33,7 +33,12 @@
 			<input type="text" class="form-control" name="contents"></input>
 			<textarea class="form-control" name="contents" id="contents" rows="3"></textarea>
 		</div>
-<div class="mb-3">
+
+		<div id="addFiles">
+			<button type="button" id="fileAdd">파일추가</button>
+
+		</div>
+<!-- <div class="mb-3">
 			<label for="files" class="form-label">File</label>
 			<input type="file" class="form-control" name="files" id="files" placeholder="파일 입력"></input>
 		</div>
@@ -44,7 +49,7 @@
 		<div class="mb-3">
 			<label for="files" class="form-label">File</label>
 			<input type="file" class="form-control" name="files" id="files" placeholder="파일 입력"></input>
-		</div>
+		</div> -->
 		<input type="submit">
 		</form>
 		<c:import url="../template/footer.jsp"></c:import>
@@ -52,6 +57,7 @@
 	<script type="text/javascript">
 		$("#contents").summernote();
 	</script>
+	<script src="/resources/js/add.js"></script>
 <!-- bootStrap -->
 </body>
 </html>
