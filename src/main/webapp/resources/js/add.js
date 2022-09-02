@@ -87,9 +87,14 @@ fileAdd.addEventListener("click", function(){
 
 });
 
+//삭제버튼 누르면 삭제 
 addFiles.addEventListener("click", function(event){
-    if(event.target.classList[0]=='del') {
-        alert('delete');
+    let button1 = event.target;
+    if(button1.classList[0]=='del') {
+        document.getElementById("file"+button1.title).remove();
+        count--;
+        
+
     }
 });
 
