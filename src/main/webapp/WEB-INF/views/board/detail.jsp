@@ -21,7 +21,7 @@
 	</div>
 	<c:forEach items="${boardDTO.boardFileDTOs}" var="fileDTO">
 	<p>
-		<a href="../resources/${board}/${fileDTO.fileName}">${fileDTO.oriName}</a>
+		<a href="../resources/upload/${board}/${fileDTO.fileName}">${fileDTO.oriName}</a>
 		</p>
 	</c:forEach>
 	
