@@ -48,10 +48,26 @@ public class BankMembersController {
 	}
 
 	@RequestMapping(value="login",method = RequestMethod.POST)
-	public String login(HttpSession session,BankMembersDTO bankMembersDTO,Model model)throws Exception{
+	public ModelAndView login(HttpSession session,BankMembersDTO bankMembersDTO,Model model)throws Exception{
+		ModelAndView mv = new ModelAndView();
 		bankMembersDTO = bankMembersService.getLogin(bankMembersDTO);
 		session.setAttribute("bankmembers", bankMembersDTO);
-		return "redirect:../";
+		
+		int result=0;
+		String message="로그인 실패";
+		String url = "./login";
+		if(bankMembersDTO!=null) {
+			result=1;
+			message="로그인 성공";
+			url="../";
+		}
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
+		
+		return mv;
+		//return "redirect:../";
 
 	}
 
