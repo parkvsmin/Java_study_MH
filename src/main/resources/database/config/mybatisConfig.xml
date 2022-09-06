@@ -12,5 +12,6 @@
 <typeAlias type="com.iu.home.bankMembers.BankMembersFileDTO" alias="BankMembersFileDTO"/>
 <typeAlias type="com.iu.home.bankBook.BankBookCommentDTO" alias="BankBookCommentDTO"/>
 <typeAlias type="java.lang.Long" alias="Long"/>
+<typeAlias type="com.iu.home.util.CommentPager" alias="CommentPager"/>
 </typeAliases>
 </configuration> 

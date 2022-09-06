@@ -36,11 +36,36 @@
 	</table>
 	</div>
 	</section>
-	
-	<a href="update?bookNum=${detail.bookNum}">수정</a>
-	<a href="delete?bookNum=${detail.bookNum}">삭제</a>
+	<a href = "./list" class="btn btn-info">상품 목록 보기</a>
+	<a href="update?bookNum=${detail.bookNum}" class="btn btn-primary">수정</a>
+	<a href="delete?bookNum=${detail.bookNum}" class="btn btn-danger">삭제</a>
+
+	<!-- comment -->
+	<div class="row">
+		<div class="mb-3">
+			<label for="writer" class="form-label">USERNAME</label>
+			<input type="text" class="form-control" id="writer" placeholder="Enter USERNAME">
+		  </div>
+
+		  <div class="mb-3">
+			<label for="contents" class="form-label">WRITE CONTENTS</label>
+			<textarea class="form-control" id="contents" rows="3"></textarea>
+		  </div>
+
+		  <div class="mb-3">
+			<button type="button" id="b1" data-booknum="${detail.bookNum}">댓글작성</button>
+		  </div>
+
+		  <!-- comment List 출력 -->
+		  <div id="commentList">
+			
+		  </div>
+
+	</div>
+	<!-- comment -->
 	<c:import url="../template/footer.jsp"></c:import>
-	
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="/resources/js/bankbookComment.js"></script>
 </body>
 </html>

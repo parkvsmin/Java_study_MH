@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iu.home.board.impl.BoardDTO;
 import com.iu.home.board.impl.BoardFileDTO;
 import com.iu.home.board.impl.BoardService;
+import com.iu.home.util.FileManager;
 import com.iu.home.util.Pager;
 
 @Service
@@ -22,7 +23,10 @@ public class QnaService implements BoardService {
 	private QnaDAO qnaDAO;
 	
 	@Autowired
-	private ServletContext servletContext;
+	private FileManager fileManager;
+	
+//	@Autowired
+//	private ServletContext servletContext;
 	
 	
 	public int setReply(QnaDTO qnaDTO)throws Exception {
@@ -66,26 +70,28 @@ public class QnaService implements BoardService {
 		System.out.println("Insert 전 : "+boardDTO.getNum());
 		int result = qnaDAO.setAdd(boardDTO);
 		System.out.println("Insert 후 : "+boardDTO.getNum());
-		String realPath = servletContext.getRealPath("/resources/upload/qna");
+		String path="resources/upload/qna";
+		//String realPath = servletContext.getRealPath("/resources/upload/qna");
 		//폴더정보자바객체를선언
-		File file = new File(realPath);
-		//폴더생성
-		if(! file.exists()) {
-			file.mkdirs();
-		}
+//		File file = new File(realPath);
+//		//폴더생성
+//		if(! file.exists()) {
+//			file.mkdirs();
+//		}
 		//중복되지 않는 파일 생성
 		for(MultipartFile mf:files) {
 			if(mf.isEmpty()) {
 				continue;
 			}
-		//UUID 클래스 
-		String fileName=UUID.randomUUID().toString();
-		fileName = fileName+"_"+mf.getOriginalFilename();
-		// HDD저장
-		file = new File(file, fileName);
-		mf.transferTo(file);
+//		//UUID 클래스 
+//		String fileName=UUID.randomUUID().toString();
+//		fileName = fileName+"_"+mf.getOriginalFilename();
+//		// HDD저장
+//		file = new File(file, fileName);
+//		mf.transferTo(file);
 		
 		//저장하는 코드
+		String fileName=fileManager.saveFile(servletContext, path, mf);
 		BoardFileDTO boardFileDTO = new BoardFileDTO();
 		boardFileDTO.setFileName(fileName);
 		boardFileDTO.setOriName(mf.getOriginalFilename());
