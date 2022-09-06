@@ -3,17 +3,17 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.iu.home.bankBook.CommentDAO">
+<mapper namespace="com.iu.home.bankBook.BankBookCommentDAO">
 
 	<insert id="setCommentAdd"
-		parameterType="com.iu.home.bankBook.BankBookCommentDTO">
-		<selectKey keyProperty="num" order="BEFORE"
+		parameterType="BankBookCommentDTO">
+<!-- 		<selectKey keyProperty="num" order="BEFORE"
 			resultType="Long">
 			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
+		</selectKey> -->
 		INSERT INTO BB_COMMENT
-		(NUM,TITLE,WRITER,CONTENTS)
-		VALUES(#{num},#{title},#{writer},#{contents})
+		(NUM,BOOKNUM,WRITER,CONTENTS,REGDATE)
+		VALUES(BOARD_SEQ.NEXTVAL, #{bookNum},#{writer},#{contents},SYSDATE)
 	</insert>
 
 	<select id="commentList" resultType="BankBookCommentDTO"
