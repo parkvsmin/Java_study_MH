@@ -23,12 +23,16 @@ public class BankBookCommentDAO {
 		return sqlSession.selectList(NAMESPACE+"getCommentList", commentPager);
 	}
 	
-	public int commentUpdate(BankBookCommentDTO bankBookCommentDTO)throws Exception {
-		return sqlSession.update(NAMESPACE+"commentUpdate", bankBookCommentDTO);
+	public Long getCommentListTotalCount(CommentPager commentPager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCommentListTotalCount", commentPager);
 	}
 	
-	public int commentDelete(BankBookCommentDTO bankBookCommentDTO)throws Exception {
-		return sqlSession.delete(NAMESPACE+"commentDelete", bankBookCommentDTO);
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO)throws Exception {
+		return sqlSession.update(NAMESPACE+"setCommentUpdate", bankBookCommentDTO);
+	}
+	
+	public int setCommentDelete(BankBookCommentDTO bankBookCommentDTO)throws Exception {
+		return sqlSession.delete(NAMESPACE+"setCommentDelete", bankBookCommentDTO);
 	}
 	
 	

@@ -15,16 +15,16 @@ public class BankBookCommentDAOTest extends MyAbstractTest {
 	@Autowired
 	private BankBookCommentDAO bankBookCommentDAO;
 	
-//	@Test
-//	public void setCommentAddTest()throws Exception {
-//		
-//		BankBookCommentDTO bankBookCommentDTO = new BankBookCommentDTO();
-//		bankBookCommentDTO.setWriter("reply");
-//		bankBookCommentDTO.setContents("contents");
-//		
-//		int result = bankBookCommentDAO.setCommentAdd(bankBookCommentDTO);
-//		assertEquals(1, result);
-//	}
+	@Test
+	public void setCommentAddTest()throws Exception {
+		
+		BankBookCommentDTO bankBookCommentDTO = new BankBookCommentDTO();
+		bankBookCommentDTO.setWriter("reply");
+		bankBookCommentDTO.setContents("contents");
+		
+		int result = bankBookCommentDAO.setCommentAdd(bankBookCommentDTO);
+		assertEquals(1, result);
+	}
 	
 	
 	@Test
