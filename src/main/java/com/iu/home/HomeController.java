@@ -29,12 +29,8 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		try {
-			Thread.sleep(10000);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+		
+		System.out.println("controller 실행");
 		
 		return "index";
 	}

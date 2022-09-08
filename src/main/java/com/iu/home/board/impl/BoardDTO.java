@@ -11,6 +11,7 @@ public class BoardDTO extends CommentDTO {
 	
 	private Long hit;
 	
+	private List<BoardFileDTO> boardFileDTOs;
 
 	public String getTitle() {
 		return title;
@@ -27,6 +28,16 @@ public class BoardDTO extends CommentDTO {
 	public void setHit(Long hit) {
 		this.hit = hit;
 	}
+
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
+	}
+
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
+	}
+	
+	
 
 	
 	//dto의 기본생성자//

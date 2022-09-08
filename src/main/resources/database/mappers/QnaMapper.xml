@@ -62,7 +62,7 @@ SELECT * FROM
 	
 		INSERT INTO QNA
 		(NUM,TITLE,CONTENTS,WRITER,REGDATE,HIT,REF,STEP,DEPTH)
-		VALUES(#{num}, #{title}, #{writer}, #{contents}, SYSDATE,
+		VALUES(#{num}, #{title}, #{contents}, #{writer}, SYSDATE,
 		0, #{num}, 0, 0)
 	</insert>
 	
