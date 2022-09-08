@@ -3,6 +3,7 @@ const writer = document.querySelector("#writer");
 const contents = document.querySelector("#contents");
 const commentList = document.querySelector("#commentList");
 const more = document.querySelector("#more");
+const update = document.querySelector("#update");
 
 
 //page 번호 담는 변수
@@ -36,7 +37,6 @@ b1.addEventListener("click", function(){
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200) {
             let result = xhttp.responseText.trim();
-            console.log(result.result)
             result = JSON.parse(result);
             writer.value="";
             contents.value="";
@@ -109,6 +109,19 @@ function getCommentList(p, bn){
                 tr.appendChild(td);
 
                 td = document.createElement("td");
+                // //날짜 format변경
+                // let date = new Date(ar[i].regDate);
+                // console.log(date);
+                // let year = date.getFullYear();
+                // let month = date.getMonth()+1;
+                // let d = date.getDate();
+                // console.log(year);
+                // console.log(month);
+                // console.log(d);
+
+
+                // tdText = document.createTextNode(year+"-"+month+"-"+d);
+
                 tdText = document.createTextNode(ar[i].regDate);
                 td.appendChild(tdText);
                 tr.appendChild(td);
@@ -119,6 +132,11 @@ function getCommentList(p, bn){
                 tdAttr.value="update";
                 td.setAttributeNode(tdAttr);
                 td.appendChild(tdText);
+                tr.appendChild(td);
+
+                tdAttr = document.createAttribute("data-commentnum");
+                tdAttr.value=ar[i].num;
+                td.setAttributeNode(tdAttr);
                 tr.appendChild(td);
 
                 td = document.createElement("td");
@@ -183,7 +201,16 @@ commentList.addEventListener("click",function(event){
         // //console.log(contents);
         // let v = contents.innerHTML;
         // contents.innerHTML="<textarea>"+v+"</textarea>";
+        let contents = event.target.previousSibling.previousSibling.previousSibling.innerHTML;
+        let writer = event.target.previousSibling.previousSibling.innerHTML;
+        let num = event.target.getAttribute("data-commentnum");
+       
+        document.querySelector("#updateContents").value=contents;
+        document.querySelector("#updateWriter").value=writer;
+        document.querySelector("#num").value=num;
+
         document.querySelector("#up").click();
+
     }
 
 
@@ -224,6 +251,43 @@ commentList.addEventListener("click",function(event){
                     }
                 }
             }
+        }
+    }
+})
+
+//------------------------------Modal Update button------------------------------
+update.addEventListener("click", function(){
+    // modal 에서 num , contents 가져오기
+    let num = document.getElementById("num").value;
+    let contents = document.querySelector("#updateContents").value;
+    // XMLHTTPRequest 
+    const xhttp = new XMLHttpRequest();
+    // 요청 정보
+    xhttp.open("POST", "commentUpdate"); //메서드 url
+    // 요청 header 정보
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // 요청 실행
+    xhttp.send("num="+num+"&contents="+contents);
+    // 응답 처리
+    xhttp.onreadystatechange=function() {
+        if(xhttp.readyState==4 && this.status==200) {
+            let result = xhttp.responseText.trim();
+            
+            if(result>0) {
+                alert("댓글 수정 성공!!!");
+
+                for(let i=0;i<commentList.children.length;) {
+                    commentList.children[0].remove();
+                }
+
+                page=1;
+
+                getCommentList(page, bookNum)
+
+            }else {
+                alert("댓글 수정 실패!!!");
+            }
+
         }
     }
 })
