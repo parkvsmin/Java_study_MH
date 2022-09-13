@@ -10,6 +10,7 @@
 <typeAlias type="com.iu.home.board.notice.NoticeDTO" alias="NoticeDTO"/>
 <typeAlias type="com.iu.home.board.qna.QnaDTO" alias="QnaDTO"/>
 <typeAlias type="com.iu.home.bankMembers.BankMembersFileDTO" alias="BankMembersFileDTO"/>
+<typeAlias type="com.iu.home.bankMembers.RoleDTO" alias="RoleDTO"/>
 <typeAlias type="com.iu.home.bankBook.BankBookCommentDTO" alias="BankBookCommentDTO"/>
 <typeAlias type="java.lang.Long" alias="Long"/>
 <typeAlias type="com.iu.home.util.CommentPager" alias="CommentPager"/>

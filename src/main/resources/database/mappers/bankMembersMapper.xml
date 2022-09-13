@@ -6,9 +6,19 @@
 <mapper namespace="com.iu.home.bankMembers.BankMembersDAO">
 	<select id="getLogin"
 		parameterType="com.iu.home.bankMembers.BankMembersDTO"
-		resultType="com.iu.home.bankMembers.BankMembersDTO">
-		SELECT USERNAME, NAME FROM BANKMEMBERS WHERE
-		USERNAME=#{userName} AND PASSWORD=#{password}
+		resultMap="getMyPageResult1">
+		<!-- SELECT USERNAME, NAME FROM BANKMEMBERS WHERE USERNAME=#{userName} 
+			AND PASSWORD=#{password} -->
+		SELECT M.USERNAME, M.NAME, MR.ROLENUM,R.ROLENAME
+		FROM BANKMEMBERS M
+		INNER JOIN
+		MEMBER_ROLE MR
+		ON M.USERNAME=MR.USERNAME
+		INNER JOIN
+		ROLE R
+		ON MR.ROLENUM=R.ROLENUM
+		WHERE M.USERNAME=#{userName} AND M.PASSWORD=#{password}
+		ORDER BY R.ROLENUM ASC
 	</select>
 
 	<insert id="setJoin"
@@ -28,25 +38,27 @@
 		parameterType="com.iu.home.bankMembers.BankMembersDTO"
 		resultMap="getMyPageResult">
 		<!-- resultType="com.iu.home.bankMembers.BankMembersDTO" -->
-SELECT BM.USERNAME, NAME, EMAIL, PHONE, FILENUM, FILENAME, ACCOUNTNUM, BOOKNAME,ACCOUNTDATE
-    FROM BANKMEMBERS BM
-		
-    LEFT JOIN
-    MEMBERFILE MF
-    ON BM.USERNAME = MF.USERNAME
-		
-    LEFT JOIN
-    BANKACCOUNT BA
-    ON BM.USERNAME = BA.USERNAME
-		
-    LEFT JOIN
-    BANKBOOK BB
-    ON BA.BOOKNUM = BB.BOOKNUM
-    WHERE BM.USERNAME=#{userName}
+		SELECT BM.USERNAME, NAME, EMAIL, PHONE, FILENUM, FILENAME, ACCOUNTNUM,
+		BOOKNAME,ACCOUNTDATE
+		FROM BANKMEMBERS BM
+
+		LEFT JOIN
+		MEMBERFILE MF
+		ON BM.USERNAME = MF.USERNAME
+
+		LEFT JOIN
+		BANKACCOUNT BA
+		ON BM.USERNAME = BA.USERNAME
+
+		LEFT JOIN
+		BANKBOOK BB
+		ON BA.BOOKNUM = BB.BOOKNUM
+		WHERE BM.USERNAME=#{userName}
 	</select>
-	
+
 	<insert id="setAddFile" parameterType="BankMembersFileDTO">
-		INSERT INTO MEMBERFILE (FILENUM,ORINAME,USERNAME,FILENAME)
+		INSERT INTO MEMBERFILE
+		(FILENUM,ORINAME,USERNAME,FILENAME)
 		VALUES(FILE_SEQ.NEXTVAL,#{oriName},#{userName},#{fileName})
 	</insert>
 
@@ -56,26 +68,39 @@ SELECT BM.USERNAME, NAME, EMAIL, PHONE, FILENUM, FILENAME, ACCOUNTNUM, BOOKNAME,
 		<result column="NAME" property="name" />
 		<result column="EMAIL" property="email" />
 		<result column="PHONE" property="phone" />
-		
+
 		<association property="bankMembersFileDTO"
-		javaType="BankMembersFileDTO">
-		<id column="FILENUM" property="fileNum"/>
-		<result column="FILENAME" property="fileName"/>
+			javaType="BankMembersFileDTO">
+			<id column="FILENUM" property="fileNum" />
+			<result column="FILENAME" property="fileName" />
 		</association>
-		
+
 		<collection property="bankAccountDTOs"
 			javaType="java.util.List"
 			ofType="com.iu.home.bankAccount.BankAccountDTO">
 			<id column="ACCOUNTNUM" property="accountNum" />
 			<result column="ACCOUNTDATE" property="accountDate" />
 
+
 			<association property="bankBookDTO"
 				javaType="com.iu.home.bankBook.BankBookDTO">
 				<result column="BOOKNAME" property="bookName" />
 			</association>
-		
+
 		</collection>
 
+
+	</resultMap>
+
+	<resultMap type="com.iu.home.bankMembers.BankMembersDTO"
+		id="getMyPageResult1">
+		<id column="USERNAME" property="userName" />
+		<result column="NAME" property="name" />
+		<collection property="roleDTOs" javaType="java.util.List"
+			ofType="RoleDTO">
+			<id column="ROLENUM" property="roleNum" />
+			<result column="ROLENAME" property="roleName" />
+		</collection>
 	</resultMap>
 
 	<!-- SELECT USERNAME, NAME, EMAIL, PHONE, FROM BANKMEMBERS WHERE USERNAME=#{userName} -->

@@ -25,26 +25,46 @@
 	<!--  Interceptor 객체 생성 -->
 	<beans:bean class="com.iu.home.interceptor.TestInterceptor" id="testInterceptor"></beans:bean>
 	
+	<!-- Interceptor 객체 생성 -->
+	<beans:bean class="com.iu.home.interceptor.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
+	<beans:bean class="com.iu.home.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
 	<!-- URL - Interceptor 맵핑  -->
 	<interceptors>
-	 <interceptor>
-	 <!-- URL 경로 -->
+	
+	<interceptor>
+		<mapping path="/notice/**"/>
+		<mapping path="/qna/**"/>
+		<exclude-mapping path="/notice/list"/>
+		<exclude-mapping path="/notice/detail"/>
+		<exclude-mapping path="/qna/list"/>
+		<beans:ref bean="memberInterceptor"/>	
+	</interceptor>
+	
+		<interceptor>
+		<mapping path="/notice/**"/>
+		<exclude-mapping path="/notice/list"/>
+		<exclude-mapping path="/notice/detail"/>
+		<beans:ref bean="adminCheckInterceptor"/>
+		</interceptor>
+		
+<!-- 	  <interceptor>
+	 URL 경로
 	 	<mapping path="/**"/>
 	 	<beans:ref bean="testInterceptor"/>
-	 </interceptor>
+	 </interceptor>  -->
 	 
-	 <interceptor>
+	 <!-- <interceptor>
 	 <mapping path="/qna/update"/>
 	 <mapping path="/notice/update"/>
-	 <beans:bean class="com.iu.home.interceptor.WriterCheckInterceptor"></beans:bean>
-	 </interceptor>
+	 <beans:bean class="com.iu.home.interceptor.WriterCheckInterceptor"></beans:bean> 
+	 </interceptor> -->
 	 
-	<!--  <interceptor>
+<!-- 	  <interceptor>
 	 	<mapping path="/qna/*"/>
 	 	<mapping path="/bankmembers/myPage"/>
 	 	<exclude-mapping path="/qna/list"/>
 	 	<beans:bean class="com.iu.home.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
-	 </interceptor> -->
+	 </interceptor>  -->
 
 	</interceptors>
 	
