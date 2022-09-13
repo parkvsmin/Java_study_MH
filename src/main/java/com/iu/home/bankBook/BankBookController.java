@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -139,4 +140,19 @@ public class BankBookController {
 		bankBookService.upBook(bankBookDTO);
 		return "redirect:list";
 	}
+	
+	@ExceptionHandler(NullPointerException.class)
+	public ModelAndView exceptionTest() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("errors/error_404");
+		return mv;
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ModelAndView exceptionTest2(Exception e) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("errors/error_404");
+		return mv;
+	}
+	
 }

@@ -45,6 +45,10 @@ public class NoticeController {
 		mv.addObject("pager", pager);
 		mv.addObject("list",ar);
 		mv.setViewName("board/list");
+		
+		if(ar.size() !=0) {
+			throw new Exception();
+		}
 		return mv;
 	}
 	//글상세
