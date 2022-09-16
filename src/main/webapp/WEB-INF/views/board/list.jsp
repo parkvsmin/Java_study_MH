@@ -59,7 +59,7 @@
 						<c:catch>
 						<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
 						</c:catch>
-							<td><a href="./detail?num=${dto.num}">${dto.title}</a></td>
+							<td><a href="./detail?num=${dto.num}">${dto.num}</a></td>
 							<td>${dto.title}</td>
 							<td>${dto.writer}</td>
 							<td>${dto.regDate}</td>
