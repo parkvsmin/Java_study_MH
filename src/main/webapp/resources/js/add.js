@@ -1,17 +1,79 @@
 const addFiles=document.getElementById("addFiles");//div
 const fileAdd=document.getElementById("fileAdd");//fileAdd 버튼
+const fileDelete = document.querySelectorAll(".fileDelete"); // 클래스명 fileDelete forEach가능
+//const fileDelete = document.getElementsByClassName("fileDelete"); // forEach 불가능
 
 
+//---------------------Update시 file Delelte----------------
+try {
+fileDelete.forEach(function(f){
+   f.addEventListener("click", function(){
+
+    
+
+    let check = window.confirm("삭제를 하면 되돌릴 수 없다!!!");
+
+    if(!check) {
+        return;
+    }
+    
+    let fileNum=f.getAttribute("data-file-num");
+
+    //ajax
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST", "./fileDelete");
+
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhttp.send("fileNum="+fileNum);
+
+    xhttp.onreadystatechange=function(){
+        if(xhttp.readyState==4&&xhttp.status==200) {
+            let result = xhttp.responseText.trim();
+
+            if(result==1){
+                console.log(result);
+                f.parentNode.remove();
+                count--;
+            }else {
+                console.log(result);
+            }
+        }
+    }
+
+   })
+
+});
+
+} catch(e){
+    console.log(e);
+}
+
+// for(fi of fileDelete) {
+//     console.log(fi);
+// }
+
+//-----------------------file add----------------------------
 let count=0;
 let idx=0;
 
-fileAdd.addEventListener("click", function(){
-
-   
-    if(count>4){
-        alert("5개만 가능")
-        return;
+function setCount(c) {
+    if(c>=0) {
+         count=c;
     }
+}
+
+try{
+
+
+    fileAdd.addEventListener("click", function(){
+
+    
+        if(count>4){
+            alert("최대 5개만 가능")
+            return;
+        }
 
     
     //부모 element div
@@ -98,4 +160,6 @@ addFiles.addEventListener("click", function(event){
     }
 });
 
+} catch(e) {
 
+}

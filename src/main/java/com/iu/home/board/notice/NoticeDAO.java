@@ -14,23 +14,37 @@ import com.iu.home.util.Pager;
 
 @Repository
 public class NoticeDAO implements BoardDAO {
-	
-	
+
+
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	private final String NAMESPACE="com.iu.home.board.notice.NoticeDAO.";
 
+
+	@Override
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail", boardFileDTO);
+	}
+
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NAMESPACE+"setFileDelete", boardFileDTO);
+	}
+
+	//file
 	public int setAddFile(BoardFileDTO boardFileDTO)throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAddFile", boardFileDTO);
 	}
-	
+
 	@Override
 	public Long getCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
-	
+
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
@@ -60,5 +74,5 @@ public class NoticeDAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.delete(NAMESPACE+"setDelete",boardDTO);
 	}
-	
+
 }

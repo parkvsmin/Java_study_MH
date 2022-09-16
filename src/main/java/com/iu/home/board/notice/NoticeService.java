@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,20 @@ public class NoticeService implements BoardService {
 
 	@Autowired
 	private FileManager fileManager;
+	
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO, ServletContext servletContext) throws Exception {
+		// TODO Auto-generated method stub
+		boardFileDTO = noticeDAO.getFileDetail(boardFileDTO);
+		int result = noticeDAO.setFileDelete(boardFileDTO);
+		String path="resources/upload/notice";
+		
+		if(result>0) {
+			fileManager.deleteFile(servletContext, path, boardFileDTO);
+		}
+		
+		return result;
+	}
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -120,16 +135,33 @@ public class NoticeService implements BoardService {
 			
 		}
 		
-		
-		
-		
 		return result;//noticeDAO.setAdd(boardDTO);
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[]files,ServletContext servletContext) throws Exception {
 		// TODO Auto-generated method stub
-		return noticeDAO.setUpdate(boardDTO);
+		
+String path="resources/upload/notice";
+int result = noticeDAO.setUpdate(boardDTO);
+
+	if(result>1) {
+		return result;
+	}
+		
+		for(MultipartFile multipartFile: files) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			String fileName=fileManager.saveFile(servletContext, path, multipartFile);
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
+			noticeDAO.setAddFile(boardFileDTO);
+			
+		}
+		return result;
 	}
 
 	@Override

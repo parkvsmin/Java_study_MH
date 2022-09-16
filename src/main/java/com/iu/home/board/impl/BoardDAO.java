@@ -7,6 +7,13 @@ import com.iu.home.util.Pager;
 
 public interface BoardDAO {
 	
+	
+	//fileDetail
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO)throws Exception;
+	
+	//fileDelete
+	public int setFileDelete(BoardFileDTO boardFileDTO)throws Exception;
+	
 	//file
 	public int setAddFile(BoardFileDTO boardFileDTO)throws Exception;
 	
